@@ -18,6 +18,7 @@
   "homepage": "https://github.com/boang3000/boxcart-template#readme",
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
+    "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^2.1.2"
