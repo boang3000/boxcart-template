@@ -1,0 +1,37 @@
+// logo
+.navbar {
+    .container {
+        padding: 20px 0;
+    }
+    .navbar-header {
+        .boxcart-logo {
+            display: block;
+            background: url(../images/boxcart-logo.png) 0 0 no-repeat;
+            background-size: contain;
+            text-indent: -9999px;
+            width: 302px;
+            height: 54px;
+        }
+    }
+    .nav {
+        margin-top: 16px;
+        li {
+            a {
+                color: #fff !important;
+                display: block;
+                margin: 0 20px;
+                padding: 5px 0;
+                text-transform: uppercase;
+                &.active {
+                    border-bottom: 2px solid #e0273d;
+                    border-top: 1px solid #fff;
+                }
+            }
+        }
+    }
+}
+
+.jumbotron {
+    padding-top: 95px;
+    padding-bottom: 95px;
+} 

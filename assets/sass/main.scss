@@ -1,7 +1,9 @@
 @import "common/mixins";
-@import "common/common";
+@import "common/variables";
+@import "common/header";
+@import "common/body";
 
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap-compass";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap-mincer";
-@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets"; 

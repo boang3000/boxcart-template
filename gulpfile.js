@@ -4,7 +4,11 @@ var gulp = require('gulp'),
     notify = require("gulp-notify"),
     bower = require('gulp-bower'),
     imagemin = require('gulp-imagemin'),
-    image = require('gulp-image')
+    image = require('gulp-image'),
+    sourcemaps = require('gulp-sourcemaps'),
+    minify = require('gulp-minify-css'),
+    autoprefixer = require('gulp-autoprefixer'),
+    concat = require('gulp-concat'),
     path = require('path');
 
 var config = {
@@ -24,25 +28,48 @@ gulp.task('icons', function() {
         .pipe(gulp.dest('./dist/fonts'));
 });
 
-gulp.task('css', function () {
-    gulp.src([
-            config.sassPath + '/main.scss', 
-            config.sassPath + '/**/*.scss',
-            config.npmDir + '/bootstrap-sass/assets/stylesheets/**.scss',
-            config.npmDir + '/fontawesome/scss/*',
-        ])
-        .pipe(sass({outputStyle: 'compressed'}))
-        .pipe(gulp.dest('./dist/css'));
+gulp.task('build:css', function () {
+    // gulp.src([
+    //         config.sassPath + '/main.scss', 
+    //         config.npmDir + '/bootstrap-sass/assets/stylesheets/**.scss',
+    //         config.npmDir + '/fontawesome/scss/*',
+    //     ])
+    //     .pipe(sass({outputStyle: 'compressed'}))
+    //     .pipe(gulp.dest('./dist/css'));
+
+    return gulp.src(config.sassPath + '/main.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass({ includePaths: 
+            [
+                config.sassPath + '/*/**.scss',
+                config.npmDir + '/bootstrap-sass/assets/stylesheets/**.scss',
+                config.npmDir + '/fontawesome/scss/*'
+            ] 
+        }))
+        .pipe(minify())
+        .pipe(autoprefixer())
+        .pipe(concat('main.css'))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest(path.join('./dist/', 'css')))
 });
 
-// gulp.task('images', function() {
-//   return gulp.src(config.imgPath + '/images/*.+(png|jpg|gif|svg)')
-//     .pipe(imagemin())
-//     .pipe(gulp.dest('./dist/images'))
-// });
+gulp.task('css', function() {
+    return gulp.src(config.sassPath + '/main.scss')
+        .pipe(sass({
+            outputStyle: 'compressed',
+            includePaths: [
+                config.sassPath + '/*/**.scss',
+                config.npmDir + '/bootstrap-sass/assets/stylesheets/**.scss',
+                config.npmDir + '/fontawesome/scss/*'
+            ]
+        }))
+        .pipe(minify())
+        .pipe(concat('main.css'))
+        .pipe(gulp.dest(path.join('./dist/', 'css')));
+});
+
 gulp.task('images', function () {
     return gulp.src(config.imgPath + '/*.+(png|jpg|gif|svg)')
-    // .pipe(gulp.dest('./dist/css'));
     .pipe(gulp.dest(path.join('./dist/', 'images')))
 });
 
