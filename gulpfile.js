@@ -41,7 +41,7 @@ gulp.task('build:css', function () {
         .pipe(sourcemaps.init())
         .pipe(sass({ includePaths: 
             [
-                config.sassPath + '/*/**.scss',
+                config.sassPath + '/**/*.scss',
                 config.npmDir + '/bootstrap-sass/assets/stylesheets/**.scss',
                 config.npmDir + '/fontawesome/scss/*'
             ] 
@@ -58,7 +58,7 @@ gulp.task('css', function() {
         .pipe(sass({
             outputStyle: 'compressed',
             includePaths: [
-                config.sassPath + '/*/**.scss',
+                config.sassPath + '/**/*.scss',
                 config.npmDir + '/bootstrap-sass/assets/stylesheets/**.scss',
                 config.npmDir + '/fontawesome/scss/*'
             ]

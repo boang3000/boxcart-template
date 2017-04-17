@@ -17,21 +17,15 @@
         margin-top: 16px;
         li {
             a {
-                color: #fff !important;
+                color: $white !important;
                 display: block;
                 margin: 0 20px;
                 padding: 5px 0;
                 text-transform: uppercase;
                 &.active {
                     border-bottom: 2px solid #e0273d;
-                    border-top: 1px solid #fff;
                 }
             }
         }
     }
 }
-
-.jumbotron {
-    padding-top: 95px;
-    padding-bottom: 95px;
-} 
