@@ -1,11 +1,51 @@
 .boxcart-template {
+	margin: 0;
 	.boxcart-header-content {
 		@include mediaMin(768px) {
-	        padding-top: 95px;
-	    	padding-bottom: 95px;
+	        // padding-top: 95px;
+	    	// padding-bottom: 95px;
 	    }
+		margin: 0;
+		padding: 0;
+		width: 100%;
 	    .container {
 
 	    }
+		.image-display {
+			display: block;
+			img {
+				width: 100%;
+			}
+		}
 	} 
+
+	.boxcart-services {
+		.boxcart-services-container {
+			margin-bottom: 50px;
+		}
+		.boxcart-services-content {
+			height: 290px;
+			display: block;
+			position: relative;
+			.service-logo {
+				position: absolute;
+				bottom: 100px;
+				left: 0;
+				right: 0;
+				text-align: center;
+				img {
+					display: block;
+					margin: 0 auto;
+					object-fit: contain;
+				}
+			}
+			.boxcart-services-details {
+				position: absolute;
+				bottom: 0;
+				h2, p {
+					text-align: center;
+				}
+			}
+		}
+	}
 }
