@@ -1,4 +1,11 @@
-.boxcart-header-content {
-    padding-top: 95px;
-    padding-bottom: 95px;
-} 
+.boxcart-template {
+	.boxcart-header-content {
+		@include mediaMin(768px) {
+	        padding-top: 95px;
+	    	padding-bottom: 95px;
+	    }
+	    .container {
+
+	    }
+	} 
+}
