@@ -1,0 +1,46 @@
+footer {
+    background: $lightGray;
+    padding: 15px 0;
+    width: 100%;
+    .container {
+        .footer-info {
+            width: 400px;
+            display: inline-block;
+            .footer-container {
+                width: 100%;
+                display: block;
+                float: left;
+            }
+            .boxcart-footer-logo {
+                background: url(../images/sprite-images.png) 0 0 no-repeat;
+                background-size: cover;
+                display: block;
+                float: left;
+                width: 195px;
+                height: 58px;
+                text-indent: -9999px;
+            }
+            p {
+                color: $gray;
+                float: left;
+                margin-top: 22px;
+                margin-left: 15px;
+            }
+        }
+        .footer-navbar {
+            display: inline-block;
+            float: right;
+            margin-top: 8px;
+            ul {
+                li {
+                    a {
+                        color: $gray;
+                        &:hover {
+                            background: transparent;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
