@@ -1,0 +1,284 @@
+/* =======================================================================
+## ++ Media Queries
+========================================================================== */
+
+/*
+    Used for media queries.
+    Add these mixins in your normal scss flow.
+
+    Eg.
+    .container{
+        width:1024px;
+
+        @include tablets{
+            width:90%;
+        }
+    }
+*/
+ 
+@mixin hiresmonitors {
+  @media screen and (min-width: 1367px) and (min-height: 769px) { @content; }
+}
+
+@mixin lowresmonitors2 {
+  @media screen and (min-width: 1367px) and (max-height: 768px) { @content; }
+}
+
+@mixin lowresmonitors {
+  @media screen and (max-width: 1366px) and (max-height: 768px) { @content; }
+}
+
+@mixin smalldevicecustom($width, $height) {
+  @media screen and (max-width: #{$width}) and (max-height: #{$height}) { @content; }
+}
+
+@mixin tablets {
+  @media screen and (max-width: 1100px) { @content; }
+}
+
+@mixin ipad {
+  @media screen and (max-width: 768px) and (max-height: 1024px) { @content; }
+}
+
+@mixin ipadLandscape {
+  @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+   @content; 
+  }
+}
+
+@mixin phones {
+  @media screen and (max-width: 720px) { @content; }
+}
+
+@mixin mediaMin($min) {
+  @media screen and (min-width: #{$min}) { @content; }
+}
+
+@mixin media($max) {
+  @media screen and (max-width: #{$max}) { @content; }
+}
+
+@mixin minmaxmedia($min, $max) {
+  @media screen and (min-width: #{$min}) and (max-width: #{$max}) { @content; }
+}
+
+@mixin smalldevice {
+  @media screen and (min-width: 320px) and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin devicePixelRatio15 {
+  @media screen and (-webkit-device-pixel-ratio: 1.5) {
+    @content;
+  }
+}
+
+@mixin devicePixelRatio2 {
+  @media screen and (-webkit-device-pixel-ratio: 2) {
+    @content;
+  }
+}
+
+@mixin devicePixelRatio3 {
+  @media screen and (-webkit-device-pixel-ratio: 3) {
+    @content;
+  }
+}
+
+@mixin devicePixelRatio4 {
+  @media screen and (-webkit-device-pixel-ratio: 4) {
+    @content;
+  }
+}
+
+@mixin galaxy($ratio) {
+  @media screen 
+    and (device-width: 360px) 
+    and (device-height: 640px)
+    and (-webkit-min-device-pixel-ratio: #{$ratio}) 
+    and (-webkit-device-pixel-ratio: #{$ratio})
+    and (orientation: portrait) {
+      @content;
+  }
+}
+
+@mixin standard {
+  @media only screen
+    and (min-device-width: 320px)
+    and (max-device-width: 480px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+      @content;
+  }
+  @media screen
+    and (device-width: 320px)
+    and (device-height: 640px)
+    and (-webkit-device-pixel-ratio: 3) {
+      @content;
+  }
+}
+
+@mixin iphone6Plus {
+  @media only screen 
+    and (min-device-width: 414px) 
+    and (max-device-width: 736px) 
+    and (-webkit-min-device-pixel-ratio: 3)
+    and (orientation: landscape) { 
+      @content;
+  }
+}
+
+/* =======================================================================
+## ++ Unit transform
+========================================================================== */
+
+/*
+    Used for making containers have width in percentages.
+    Usage: define elemnt width in px and the width of parent elemnt in px.
+    eg. .block{width:cp(512px, 1024px)} this will result in .block{width:50%;}
+*/
+
+@function cp($target, $container) {
+  @return ($target / $container) * 100%;
+}
+
+/*
+    Used for making px values convert to rem values
+    Usage: define font-size in px and it will convert to rems
+    eg. font-size: rem(14px);
+*/
+
+@function rem($target, $context: $base-font-size) {
+  @if $target == 0 { @return 0 }
+  @return $target / $context + 0rem;
+}
+$base-font-size: 16px;
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}
+}
+
+@mixin darkness {
+  background-color: #000;
+  opacity: 0.6;
+}
+
+@mixin css3($property, $value) {
+  -webkit-#{$property}: #{$value};
+   -khtml-#{$property}: #{$value};
+     -moz-#{$property}: #{$value};
+      -ms-#{$property}: #{$value};
+       -o-#{$property}: #{$value};
+          #{$property}: #{$value};
+}
+
+@mixin font-size($sizeValue: 1.6, $important: null) {
+  font-size: ($sizeValue * 10) + px $important;
+  font-size: $sizeValue + rem $important;
+}
+
+@mixin transform($transforms) {
+	   -moz-transform: $transforms;
+	     -o-transform: $transforms;
+	    -ms-transform: $transforms;
+	-webkit-transform: $transforms;
+          transform: $transforms;
+}
+
+@mixin transition($transition...) {
+     -moz-transition: $transition;
+       -o-transition: $transition;
+  -webkit-transition: $transition;
+          transition: $transition;
+}
+
+@mixin animation($delay, $duration, $animation) {
+    -webkit-animation-delay: $delay;
+    -webkit-animation-duration: $duration;
+    -webkit-animation-name: $animation;
+    -webkit-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+    -moz-animation-delay: $delay;
+    -moz-animation-duration: $duration;
+    -moz-animation-name: $animation;
+    -moz-animation-fill-mode: forwards;
+
+    -o-animation-delay: $delay;
+    -o-animation-duration: $duration;
+    -o-animation-name: $animation;
+    -o-animation-fill-mode: forwards;
+
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-name: $animation;
+    animation-fill-mode: forwards;
+}
+
+@mixin gradient-background-before($position, $color, $opacity, $index, $height){
+  &:before {
+    content: '';
+    position: $position;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-image: -moz-linear-gradient(to top, transparent, $color 100%);
+    background-image: -webkit-gradient(left top, left bottom, color-stop(0%, transparent), color-stop(100%, $color));
+    background-image: -webkit-linear-gradient(to top, transparent 0%, $color 100%);
+    background-image: -o-linear-gradient(to top, transparent 0%, $color 100%);
+    background-image: -ms-linear-gradient(to top, transparent 0%, $color 100%);
+    background-image: linear-gradient(to top, transparent, $color 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='transparent', endColorstr=$color, GradientType=0 );
+    opacity: $opacity;
+    z-index: $index;
+    height: $height;
+  }
+}
+@mixin gradient-background-after($position, $color, $opacity, $index, $height){
+  &:after {
+    content: '';
+    position: $position;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: -moz-linear-gradient(to bottom, transparent, $color 100%);
+    background-image: -webkit-gradient(left top, left bottom, color-stop(0%, transparent), color-stop(100%, $color));
+    background-image: -webkit-linear-gradient(to bottom, transparent 0%, $color 100%);
+    background-image: -o-linear-gradient(to bottom, transparent 0%, $color 100%);
+    background-image: -ms-linear-gradient(to bottom, transparent 0%, $color 100%);
+    background-image: linear-gradient(to bottom, transparent, $color 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='transparent', endColorstr=$color, GradientType=0 );
+    opacity: $opacity;
+    z-index: $index;
+    height: $height;
+  }
+}
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}
+}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes $animation-name {
+    @content;
+  }
+  @-moz-keyframes $animation-name {
+    @content;
+  }
+  @keyframes $animation-name {
+    @content;
+  }
+}
+
+@mixin on-landscape {
+  @media (min-device-width: 320px) 
+    and (max-device-width: 736px) 
+    and (orientation: landscape) { 
+      @content;
+  }
+}
